@@ -1,0 +1,16 @@
+From: m.huber@alpenwerk.example
+Subject: Request for quotation - packaging line retrofit
+
+Company: Alpenwerk GmbH
+
+Hello sales team,
+
+for the retrofit of our packaging line we need the following parts:
+- 300 x inductive proximity sensor M8
+- 20 x 7" touch panel HMI
+- 40 x industrial ethernet cable M12 5 m
+
+Please send us your best price and the delivery date. Delivery requested by 2026-11-06.
+
+Best regards
+Markus Huber, Maintenance Manager

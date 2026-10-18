@@ -1,0 +1,9 @@
+.env
+.venv/
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+.idea/
+mcp_inventory/data/
+logs/*.log
+!logs/sample_*.log

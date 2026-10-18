@@ -1,0 +1,13 @@
+From: technik@bergbahn-service.example
+Subject: small order network parts
+
+Company: Bergbahn Service KG
+
+Hi,
+
+we need a few spare parts for our lift control cabinet:
+- 10 x industrial ethernet cable M12 5 m
+- 2 x managed industrial switch
+
+Thanks!
+Peter Kofler

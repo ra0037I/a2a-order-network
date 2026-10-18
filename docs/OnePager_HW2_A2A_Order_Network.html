@@ -1,0 +1,104 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>A2A Order Network</title>
+<style>:root { --accent: #0F6E56; --accent-dark: #085041; --tint: #E1F5EE; } 
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 210mm; height: 297mm; }
+body { font-family: 'Inter', 'DejaVu Sans', sans-serif; color: #2C2C2A; font-size: 9.6pt; line-height: 1.45;
+       -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #fff; }
+.page { width: 210mm; height: 297mm; padding: 0 15mm 11mm; display: flex; flex-direction: column; position: relative; }
+.band { position: absolute; left: 0; right: 0; top: 0; height: 5mm; background: var(--accent); }
+header { padding-top: 13mm; }
+.kicker { font-size: 8.3pt; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: 'Inter Display', 'Inter', sans-serif; font-size: 27pt; font-weight: 700; letter-spacing: -.01em;
+     line-height: 1.1; margin-top: 2.2mm; }
+.lead { font-size: 10.6pt; color: #444441; margin-top: 2.5mm; max-width: 170mm; }
+.meta { display: grid; grid-template-columns: 1.05fr 0.7fr 1.5fr; gap: 3mm; margin-top: 6mm; }
+.meta div { background: var(--tint); border-radius: 2.5mm; padding: 2.8mm 3.5mm; }
+.meta .label { display: block; font-size: 7.3pt; font-weight: 600; text-transform: uppercase; letter-spacing: .07em;
+               color: var(--accent); margin-bottom: .6mm; }
+.meta .value { font-weight: 600; font-size: 9.8pt; }
+.meta .sub { display: block; font-size: 7.9pt; white-space: nowrap; color: #5F5E5A; font-weight: 400; }
+.meta a { color: #2C2C2A; text-decoration: none; border-bottom: .3mm solid var(--accent); }
+h2 { font-size: 11.5pt; font-weight: 700; margin: 5mm 0 2.2mm; display: flex; align-items: center; gap: 2.5mm; }
+h2::before { content: ""; width: 1.3mm; height: 4.2mm; background: var(--accent); border-radius: .6mm; }
+figure { border: .25mm solid #E4E2DA; border-radius: 2.5mm; padding: 4mm 4mm 3mm; }
+figure svg { width: 100%; height: auto; display: block; }
+.cols { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 6mm; }
+section, ol.steps > li { min-width: 0; }
+ol.steps { list-style: none; counter-reset: s; }
+ol.steps > li { counter-increment: s; position: relative; padding-left: 8mm; margin-bottom: 2.8mm; }
+ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: .1mm; width: 5.2mm; height: 5.2mm;
+     border-radius: 50%; background: var(--accent); color: #fff; font-size: 8pt; font-weight: 700;
+     display: flex; align-items: center; justify-content: center; }
+.step-title { font-weight: 600; }
+pre { font-family: 'DejaVu Sans Mono', monospace; font-size: 7pt; line-height: 1.5; background: #F6F5F1;
+      border: .25mm solid #E4E2DA; border-radius: 1.8mm; padding: 1.8mm 2.2mm; margin-top: 1.2mm; white-space: pre; overflow: hidden; }
+pre .c { color: #888780; }
+code { white-space: nowrap; font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt; background: #F1EFE8; padding: .1mm 1mm; border-radius: .8mm; }
+.note { font-size: 8.4pt; color: #5F5E5A; margin-top: 1mm; }
+.pre-req { display: flex; gap: 2mm; flex-wrap: wrap; margin-bottom: 3mm; }
+.chip { font-size: 8pt; font-weight: 600; background: var(--tint); color: var(--accent-dark); border-radius: 10mm; padding: .6mm 2.6mm; }
+footer { margin-top: auto; padding-top: 3mm; border-top: .25mm solid #E4E2DA; display: flex; justify-content: space-between;
+         font-size: 7.8pt; color: #888780; }
+</style></head>
+<body><div class="page"><div class="band"></div>
+<header>
+  <div class="kicker">Homework Teil 2 · Option A · Technical Track</div>
+  <h1>A2A Order Network</h1>
+  <p class="lead">Verteiltes Multi-Agent-System: Vier Agents laufen als eigene Prozesse auf eigenen Ports, finden sich über eine Agent-Registry und erstellen gemeinsam per A2A-Protokoll aus einer Kunden-E-Mail ein vollständiges Angebot. Intern nutzt der Inventory-Agent den MCP-Server aus Teil 1.</p>
+  <div class="meta">
+    <div><span class="label">Fach</span><span class="value">Industrial Computing</span>
+         <span class="sub">MCI Master · 3. Semester · Ch. Maurer</span></div>
+    <div><span class="label">Ersteller</span><span class="value">Andreas Rofner</span>
+         <span class="sub">Oktober 2026</span></div>
+    <div><span class="label">Repository</span><span class="value"><a href="https://github.com/ra0037I/a2a-order-network">ra0037I/a2a-order-network</a></span>
+         <span class="sub">https://github.com/ra0037I/a2a-order-network</span></div>
+  </div>
+</header>
+<h2>Architektur</h2>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 300" font-family="Inter, DejaVu Sans, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<g font-size="10.5" text-anchor="middle">
+<rect x="10" y="118" width="135" height="54" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width=".8"/>
+<text x="77" y="141" font-size="12.5" font-weight="700" fill="#2C2C2A">client.py</text><text x="77" y="158" fill="#5F5E5A">Kunden-E-Mail</text>
+<rect x="195" y="14" width="180" height="54" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width=".8"/>
+<text x="285" y="37" font-size="12.5" font-weight="700" fill="#085041">Registry :8000</text><text x="285" y="54" fill="#0F6E56">Anmeldung · Heartbeat · Suche</text>
+<rect x="195" y="118" width="180" height="54" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width=".8"/>
+<text x="285" y="141" font-size="12.5" font-weight="700" fill="#3C3489">Orchestrator :8100</text><text x="285" y="158" fill="#534AB7">Root-Agent + Ablauf-Guard</text>
+<rect x="440" y="22" width="165" height="54" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width=".8"/>
+<text x="522" y="45" font-size="12.5" font-weight="700" fill="#3C3489">Intake :8101</text><text x="522" y="62" fill="#534AB7">E-Mail → JSON + CRM</text>
+<rect x="440" y="118" width="165" height="54" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width=".8"/>
+<text x="522" y="141" font-size="12.5" font-weight="700" fill="#3C3489">Inventory :8102</text><text x="522" y="158" fill="#534AB7">Lager und Preise</text>
+<rect x="440" y="214" width="165" height="54" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width=".8"/>
+<text x="522" y="237" font-size="12.5" font-weight="700" fill="#3C3489">Production :8103</text><text x="522" y="254" fill="#534AB7">Produktion · Liefertermine</text>
+<rect x="645" y="118" width="118" height="54" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width=".8"/>
+<text x="704" y="141" font-size="12.5" font-weight="700" fill="#085041">MCP :8200</text><text x="704" y="158" fill="#0F6E56">aus Teil 1</text>
+</g>
+<path d="M77 118 L77 41 L191 41" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a)"/>
+<line x1="285" y1="116" x2="285" y2="72" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a)"/>
+<line x1="145" y1="145" x2="191" y2="145" stroke="#444441" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M375 145 L405 145" fill="none" stroke="#444441" stroke-width="1.5"/>
+<path d="M405 145 L405 49 L436 49" fill="none" stroke="#444441" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M405 145 L436 145" fill="none" stroke="#444441" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M405 145 L405 241 L436 241" fill="none" stroke="#444441" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="605" y1="145" x2="641" y2="145" stroke="#444441" stroke-width="1.5" marker-end="url(#a)"/>
+<g font-size="9.5" fill="#5F5E5A"><text x="150" y="138">A2A</text><text x="380" y="138">A2A</text><text x="610" y="138">MCP</text></g>
+<g font-size="10" fill="#444441">
+<line x1="10" y1="292" x2="44" y2="292" stroke="#444441" stroke-width="1.5"/><text x="52" y="296">A2A bzw. MCP: Aufgabe senden</text>
+<line x1="250" y1="292" x2="284" y2="292" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="5 4"/><text x="292" y="296">Registry-Abfrage: wer kann was?</text>
+<text x="500" y="296" fill="#888780">Agents melden sich selbst an (Heartbeat 15 s)</text>
+</g>
+</svg>
+</figure>
+<div class="cols">
+  <section><h2>Installation</h2>
+    <div class="pre-req"><span class="chip">Python ≥ 3.11</span><span class="chip">Git</span><span class="chip">OpenAI-API-Key</span></div>
+    <ol class="steps"><li><span class="step-title">Repository klonen</span><pre>git clone https://github.com/ra0037I/a2a-order-network
+cd a2a-order-network</pre></li><li><span class="step-title">Umgebung anlegen und Pakete installieren</span><pre>python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt</pre><p class="note">Linux/macOS: <code>source .venv/bin/activate</code></p></li><li><span class="step-title">Konfiguration anlegen</span><pre>copy .env.example .env</pre><p class="note">In der <code>.env</code> eintragen: <code>LLM_PROVIDER=openai</code> und <code>OPENAI_API_KEY=sk-…</code></p></li></ol></section>
+  <section><h2>Starten</h2><ol class="steps"><li><span class="step-title">Terminal 1 – alle Dienste starten</span><pre>python run_all.py</pre><p class="note">Startet Registry (:8000), MCP-Server (:8200) und vier Agents (:8100–8103) als eigene Prozesse. Warten bis <code>[run_all] ready</code> erscheint.</p></li><li><span class="step-title">Terminal 2 – Kunden-E-Mail senden</span><pre>python client.py --demo 1   <span class="c"># 1, 2, 3, all</span></pre><p class="note">Der Client findet den Orchestrator über die Registry und gibt das fertige Angebot aus.</p></li><li><span class="step-title">Registry im Browser ansehen</span><pre>http://127.0.0.1:8000/agents</pre></li><li><span class="step-title">Ergebnisse prüfen</span><pre>logs\client_run_*.log        <span class="c"># Angebot</span>
+logs\orchestrator-agent.log  <span class="c"># A2A</span></pre><p class="note">Tests: <code>python -m pytest -q</code> (inkl. End-to-End-Lauf aller Prozesse)</p></li></ol></section>
+</div>
+<footer><span>Industrial Computing · Homework 2 · Andreas Rofner</span><span>Ausführliche Anleitung: SETUP.md im Repository</span></footer>
+</div></body></html>

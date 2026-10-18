@@ -1,0 +1,10 @@
+# Own LiteLLM proxy in front of OpenAI - start with:  python start_litellm.py
+# Keys come from .env: OPENAI_API_KEY (used by the proxy) and LITELLM_MASTER_KEY (= LITELLM_KEY of the agents)
+model_list:
+  - model_name: gpt-4o-mini
+    litellm_params:
+      model: openai/gpt-4o-mini
+      api_key: os.environ/OPENAI_API_KEY
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY   # LiteLLM >= 1.105 refuses known defaults like sk-1234

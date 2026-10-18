@@ -1,0 +1,9 @@
+fasta2a[pydantic-ai]
+pydantic-ai-slim[openai]>=1.0
+fastmcp>=3.4.4
+fastapi>=0.110
+uvicorn>=0.30
+httpx>=0.27
+python-dotenv>=1.0
+pytest>=8.0
+litellm[proxy]>=1.105

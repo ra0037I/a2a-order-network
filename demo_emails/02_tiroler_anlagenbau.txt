@@ -1,0 +1,16 @@
+From: einkauf@tiroler-anlagenbau.example
+Subject: Order inquiry safety upgrade
+
+Company: Tiroler Anlagenbau AG
+
+Dear Sir or Madam,
+
+we are upgrading the safety circuits of three production halls and would like to order:
+- 500 x safety relay
+- 12 x frequency inverter 5.5 kW
+- 6 x PLC-1500
+
+Can you deliver everything by 2026-11-20? Partial deliveries are acceptable.
+
+Kind regards
+Julia Moser, Procurement
