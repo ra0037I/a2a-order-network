@@ -1,9 +1,11 @@
-fasta2a[pydantic-ai]
-pydantic-ai-slim[openai]>=1.0
-fastmcp>=3.4.4
-fastapi>=0.110
-uvicorn>=0.30
-httpx>=0.27
-python-dotenv>=1.0
-pytest>=8.0
-litellm[proxy]>=1.105
+# Feste Versionen: litellm braucht openai<3 - mit diesen Versionen laufen Agents und LiteLLM-Proxy in EINEM venv
+fasta2a[pydantic-ai]==1.0.0
+pydantic-ai-slim[openai]==2.31.1
+openai==2.54.0
+fastmcp==4.1.0
+fastapi==0.143.1
+uvicorn==0.54.0
+httpx==0.28.1
+python-dotenv==1.2.4
+pytest==9.1.1
+litellm[proxy]==1.105.1
